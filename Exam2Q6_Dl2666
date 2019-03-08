@@ -1,0 +1,47 @@
+#include <iostream>
+using namespace std;
+void printArray(int arr[], int arrSize);
+int* factorials(int num, int* factorialsArr, int &factorialsSum);
+typedef int* intPtr;
+int main() {
+    int n;
+    int* factorialsArr;
+    int factorialsSum;
+    cout<<"Please enter a positive integer:"<<endl;
+    cin>>n;
+    // calling your function
+    factorialsArr=new int[n];
+
+    factorialsArr=factorials(n, factorialsArr, factorialsSum);
+    
+    cout<<"The first "<<n<<" factorials are: ";
+    printArray(factorialsArr, n);
+    cout<<"and their sum is: "<<factorialsSum<<endl;
+    delete [] factorialsArr;
+    return 0;
+}
+int* factorials(int num, int* factorialsArr, int &factorialsSum){
+    
+    for(int i=1;i<=num;i++){
+        factorialsArr[i]=i;
+
+    }
+    int fact(1);
+    intPtr arr;
+    arr=factorialsArr;
+    for(int i=0;i<num;i++){
+        fact*=factorialsArr[i+1];
+        arr[i]=fact;
+        
+    }
+    for(int i=0;i<num;i++){
+        factorialsSum+=arr[i];
+    }
+    return arr;
+
+}
+void printArray(int arr[], int arrSize){
+    for(int i = 0; i < arrSize; i++)
+        cout<<arr[i]<<" ";
+}
+
